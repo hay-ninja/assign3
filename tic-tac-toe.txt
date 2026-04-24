@@ -10,3 +10,12 @@ well, i messed up. my first commit didnt go through, and i didnt notice so i kep
 the issue what that my global config for linux wasnt set. haha. i will recommit with this new added text.
 
 Added value parameter to square. its cools
+
+Changed onclick behavior to display an X everytime its clicked by using arrow function >:)
+but also ran into insane (basic) bug. I wrote
+onclick = {handleClick()} originally.
+this was terrible because handleClick() with the 
+parenthesis, called setValue('X'), and re-rendered the page
+endlessly so i was just getting a blank screen.
+Changing it to an arrow Function allowed it to only be called
+ON CLICK.
