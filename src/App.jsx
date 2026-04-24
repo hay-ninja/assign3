@@ -51,14 +51,21 @@ export default function Board() {
           return;
         }
         if (squares[i] === null){
-          const next = squares.slice();
           const nextSquares = squares.slice();
           nextSquares[selected] = null;
           nextSquares[i] = player;
+
+          if (squares[4] === player && selected !== 4) {
+          if (calculateWinner(nextSquares) !== player) {
+            setSelected(null);
+            return;
+          }
+          } 
           
           setSquares(nextSquares);
           setXIsNext(!xIsNext);
           setNumTurns(numTurns+1);
+          setSelected(null); // oooh bug fix
         }
         return;
     }

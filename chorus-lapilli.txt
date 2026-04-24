@@ -13,3 +13,12 @@ added logic for selection of a square aka first click.
 There was a bug where i wrapped it in a function () => setSelect(), and it was weird.
 Now i just call setSelect(). Also, console logging selected right after to check doesnt work
 because it updates once the state ends, not immediately like what I'm used to.
+
+Achieved some piece movement capacity. Not perfect, O was able to place a 4th piece. Also, A double click is needed after a movement has been done.
+I have added some console logs to debug
+
+Ok, big bug fix. I forgot to set selected to null after a successful move. thats why the double clicks were a thing
+
+Also, implemented center move rule logic, within the last if statement (last step of moving)
+
+Should be done! but I will be checking with the autograder next commit.
