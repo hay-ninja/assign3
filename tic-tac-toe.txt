@@ -19,3 +19,10 @@ parenthesis, called setValue('X'), and re-rendered the page
 endlessly so i was just getting a blank screen.
 Changing it to an arrow Function allowed it to only be called
 ON CLICK.
+
+Added parent useState and handleClick functionality so that it affects the state of individual square components.
+the child component calls a parent function, to update the parent board state 
+
+added switching between O and X, and checking if a square has already been clicked. I initially misnamed variables, missing a capitalization, so it was annoying, but I got through it.
+
+Added winning component, and status text, updating w handleClick. Now the game is fully functional!
