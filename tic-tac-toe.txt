@@ -5,3 +5,6 @@ linux system, and git cloned from there.
 exported default function square in app.jsx to see what it does from tutorial
 
 got stuck because tried to shorten name of rows to "row" instead of "board-row" and didnt see that it was pre-defined in styles.css. bruh
+
+well, i messed up. my first commit didnt go through, and i didnt notice so i kept coding, and added my changes. so now my first commit has both my 3x3 square and single square
+the issue what that my global config for linux wasnt set. haha. i will recommit with this new added text.
