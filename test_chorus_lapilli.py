@@ -154,6 +154,61 @@ class TestChorusLapilli(unittest.TestCase):
         self.assertTileIs(tiles[0], self.SYMBOL_BLANK)
         tiles[0].click()
         self.assertTileIs(tiles[0], self.SYMBOL_X)
+    def test_alternating_turns(self):
+        '''Check that placement alternates X and O in the first moves.'''
+        tiles = self.driver.find_elements(By.XPATH, self.BOARD_TILE_XPATH)
+        tiles[0].click()
+        self.assertTileIs(tiles[0], self.SYMBOL_X)
+        tiles[1].click()
+        self.assertTileIs(tiles[1], self.SYMBOL_O)
+        tiles[2].click()
+        self.assertTileIs(tiles[2], self.SYMBOL_X)
+        tiles[3].click()
+        self.assertTileIs(tiles[3], self.SYMBOL_O)
+
+    def test_no_moves_after_win(self):
+        '''Check that no additional moves can be made after a player wins.'''
+        tiles = self.driver.find_elements(By.XPATH, self.BOARD_TILE_XPATH)
+        # X=0, O=3, X=1, O=4, X=2 -> X wins with top row
+        tiles[0].click()  # X
+        tiles[3].click()  # O
+        tiles[1].click()  # X
+        tiles[4].click()  # O
+        tiles[2].click()  # X wins
+        self.assertTileIs(tiles[0], self.SYMBOL_X)
+        self.assertTileIs(tiles[1], self.SYMBOL_X)
+        self.assertTileIs(tiles[2], self.SYMBOL_X)
+        # Any further click should be ignored
+        tiles[5].click()
+        self.assertTileIs(tiles[5], self.SYMBOL_BLANK)
+        tiles[6].click()
+        self.assertTileIs(tiles[6], self.SYMBOL_BLANK)
+
+    def test_movement_phase_valid_move(self):
+        '''After 6 placements, a player can select a piece and move it
+        to an adjacent empty square.'''
+        tiles = self.driver.find_elements(By.XPATH, self.BOARD_TILE_XPATH)
+        # Place 6 pieces with no winner:
+        #   X at 0, 1, 6   |   O at 4, 5, 8
+        # Board:
+        #   X | X | .
+        #   . | O | O
+        #   X | . | O
+        tiles[0].click()  # X
+        tiles[4].click()  # O (center — note: belongs to O, not X, so
+                          # X's movement is not restricted by center rule)
+        tiles[1].click()  # X
+        tiles[5].click()  # O
+        tiles[6].click()  # X
+        tiles[8].click()  # O
+        # Sanity: confirm state before the move
+        self.assertTileIs(tiles[1], self.SYMBOL_X)
+        self.assertTileIs(tiles[2], self.SYMBOL_BLANK)
+        # It is X's turn. Move X from tile 1 to adjacent empty tile 2.
+        tiles[1].click()  # select piece at 1
+        tiles[2].click()  # move to 2
+        self.assertTileIs(tiles[1], self.SYMBOL_BLANK)
+        self.assertTileIs(tiles[2], self.SYMBOL_X)
 
 
 # ================= [DO NOT MAKE ANY CHANGES BELOW THIS LINE] =================
