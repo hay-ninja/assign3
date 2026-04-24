@@ -17,7 +17,7 @@ export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null))
   const [xIsNext, setXIsNext] = useState(true);
   const [numTurns, setNumTurns] = useState(0);
-  const [selected, setSelect] = useState(null); //whether smth has been selected or not
+  const [selected, setSelected] = useState(null); //whether smth has been selected or not
   
   function handleClick(i) {
     const player = xIsNext ? "X" : "O";
@@ -32,16 +32,35 @@ export default function Board() {
     }
 
     else{
+      // click 1 
         if (selected === null) { //selection click has happened
           if (squares[i] === player){
-            setSelect(i);
-            console.log(selected);
+            console.log("smth selecetd");
+            setSelected(i);
           }
-          console.log(squares[i]);
-          console.log(player);
-          console.log("invalid click");
           return; // nothing happens
         }
+      // click 2
+        if (i === selected){ //clicked same piece
+          setSelected(null);
+          return
+        }
+        if (squares[i] !== null || !isAdjacent(i, selected)){
+          console.log("bad move");
+          setSelected(null); //bad move, reset!
+          return;
+        }
+        if (squares[i] === null){
+          const next = squares.slice();
+          const nextSquares = squares.slice();
+          nextSquares[selected] = null;
+          nextSquares[i] = player;
+          
+          setSquares(nextSquares);
+          setXIsNext(!xIsNext);
+          setNumTurns(numTurns+1);
+        }
+        return;
     }
     }
     
@@ -94,4 +113,13 @@ function calculateWinner(squares) {
     }
   }
   return null;
+}
+
+function isAdjacent(a, b) {
+  if (a === b) return false;         
+  const rowA = Math.floor(a / 3);
+  const colA = a % 3;
+  const rowB = Math.floor(b / 3);
+  const colB = b % 3;
+  return Math.abs(rowA - rowB) <= 1 && Math.abs(colA - colB) <= 1;
 }

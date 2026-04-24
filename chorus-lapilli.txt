@@ -8,3 +8,8 @@ Movement:
 
 Alright, I added a console.log("6+ turns passed") to check if the 
 logic runs correctly, and it does. Will continue forward now.
+
+added logic for selection of a square aka first click.
+There was a bug where i wrapped it in a function () => setSelect(), and it was weird.
+Now i just call setSelect(). Also, console logging selected right after to check doesnt work
+because it updates once the state ends, not immediately like what I'm used to.
