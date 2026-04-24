@@ -4,3 +4,7 @@ Movement:
  -pieces disappear and u can move pieces
  -selection of pieces
  -invalid movement just reset
+
+
+Alright, I added a console.log("6+ turns passed") to check if the 
+logic runs correctly, and it does. Will continue forward now.

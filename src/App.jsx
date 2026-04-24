@@ -17,22 +17,31 @@ export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null))
   const [xIsNext, setXIsNext] = useState(true);
   const [numTurns, setNumTurns] = useState(0);
+  const [selected, setSelect] = useState(null); //whether smth has been selected or not
   
   function handleClick(i) {
+    const player = xIsNext ? "X" : "O";
+
     if (numTurns<6){
-      if (squares[i] || calculateWinner(squares)) {return;}
+      if (squares[i] || calculateWinner(squares)) return;
       const nextSquares = squares.slice();
-      if (xIsNext) {
-        nextSquares[i] = "X";
-      } else {
-        nextSquares[i] = "O";
-      }
+      nextSquares[i] = player; // hehe cleaner
       setSquares(nextSquares);
       setXIsNext(!xIsNext);
       setNumTurns(numTurns+1);
-    } 
-    else {
-      console.log("6+ turns passed")
+    }
+
+    else{
+        if (selected === null) { //selection click has happened
+          if (squares[i] === player){
+            setSelect(i);
+            console.log(selected);
+          }
+          console.log(squares[i]);
+          console.log(player);
+          console.log("invalid click");
+          return; // nothing happens
+        }
     }
     }
     
