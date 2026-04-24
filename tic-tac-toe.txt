@@ -8,3 +8,5 @@ got stuck because tried to shorten name of rows to "row" instead of "board-row" 
 
 well, i messed up. my first commit didnt go through, and i didnt notice so i kept coding, and added my changes. so now my first commit has both my 3x3 square and single square
 the issue what that my global config for linux wasnt set. haha. i will recommit with this new added text.
+
+Added value parameter to square. its cools
