@@ -1,0 +1,6 @@
+Before starting, i think i'll plan a little:
+I need a normal phase, then movement phase, once turns per player hit 3
+Movement: 
+ -pieces disappear and u can move pieces
+ -selection of pieces
+ -invalid movement just reset

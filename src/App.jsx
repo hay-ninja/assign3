@@ -16,18 +16,26 @@ function Square({value, onSquareClick}) {
 export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null))
   const [xIsNext, setXIsNext] = useState(true);
+  const [numTurns, setNumTurns] = useState(0);
   
   function handleClick(i) {
-    if (squares[i] || calculateWinner(squares)) {return;}
-    const nextSquares = squares.slice();
-    if (xIsNext) {
-      nextSquares[i] = "X";
-    } else {
-      nextSquares[i] = "O";
+    if (numTurns<6){
+      if (squares[i] || calculateWinner(squares)) {return;}
+      const nextSquares = squares.slice();
+      if (xIsNext) {
+        nextSquares[i] = "X";
+      } else {
+        nextSquares[i] = "O";
+      }
+      setSquares(nextSquares);
+      setXIsNext(!xIsNext);
+      setNumTurns(numTurns+1);
+    } 
+    else {
+      console.log("6+ turns passed")
     }
-    setSquares(nextSquares);
-    setXIsNext(!xIsNext);
-  }
+    }
+    
 
   const winner = calculateWinner(squares);
   let status;
