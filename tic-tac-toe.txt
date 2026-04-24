@@ -1,0 +1,7 @@
+when i transfered to wsl -> ubuntu, and cloned directory, i didnt check pwd. I was on the directory C:\Users\hayre\dev\projects\academic\CS35L\Assignment 3\ 
+-> /mnt/c/Users/hayre/dev/projects/academic/CS35L/Assignment 3/ and this would've caused problems. i did cd ~/ to home directory, created cs35l on my
+linux system, and git cloned from there. 
+
+exported default function square in app.jsx to see what it does from tutorial
+
+got stuck because tried to shorten name of rows to "row" instead of "board-row" and didnt see that it was pre-defined in styles.css. bruh
